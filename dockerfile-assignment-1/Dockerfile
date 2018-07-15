@@ -26,14 +26,14 @@ RUN apk add --update tini
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 # - Node uses a "package manager", so it needs to copy in package.json file
-COPY package.json package.json
+COPY . .
 # - then it needs to run 'npm install' to install dependencies from that file
 # - to keep it clean and small, run 'npm cache clean --force' after above
 RUN npm install && npm cache clean --force
 # - then it needs to copy in all files from current directory
 COPY . .
 # - then it needs to start container with command '/sbin/tini -- node ./bin/www'
-CMD [ "/sbin/tini", "--", "node", "./bin/www"]
+CMD [ "/sbin/tini", "--", "node", "./bin/www" ]
 # - in the end you should be using FROM, RUN, WORKDIR, COPY, EXPOSE, and CMD commands
 
 # Bonus Extra Credit
