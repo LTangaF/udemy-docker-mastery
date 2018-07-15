@@ -2,8 +2,7 @@
 version: '2'
 services:
   drupal:
-    build: .
-    image: custom-drupal
+    image: drupal
     depends_on:
       - postgres
     ports:
@@ -15,7 +14,7 @@ services:
       - drupal_sites:/var/www/html/sites
     restart: always
   postgres:
-    image: postgres:9.6
+    image: postgres
     volumes:
       - pg_data:/var/lib/postgresql/data
     environment:
@@ -23,7 +22,12 @@ services:
     restart: always
 volumes:
   pg_data:
+    driver: local
   drupal_modules:
+    driver: local
   drupal_profiles:
+    driver: local
   drupal_themes:
+    driver: local
   drupal_sites:
+    driver: local
